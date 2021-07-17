@@ -27,8 +27,10 @@ def place_piece(row, column, grid, player):
         color = "red"
     elif (player == 2):
         color = "yellow"
-    else:
+    elif (player == 3):
         color = "lime"
+    else:
+        color = "violet"
     
     #Update the color on the board
     o = canvas_list[row][column].create_oval(4,4,70,70,fill=color)
@@ -159,8 +161,10 @@ def next_player(player, window):
         color = "red"
     elif (abs(new_player) == 2):
         color = "yellow"
-    else:
+    elif (abs(new_player) == 3):
         color = "lime"
+    else:
+        color = "violet"
     
     right_frame = tkinter.Frame(window, bg="black")
     right_frame.grid(row=0, column=c_num-1)
@@ -281,7 +285,7 @@ def play():
     button_list = []
     
     for j in range(c_num):
-        c = tkinter.Button(window, height=2, width=7, fg="grey", activeforeground="blue", activebackground="blue", text= "Place", command=turn_list[j])
+        c = tkinter.Button(window, height=2, width=7, fg="grey", activeforeground="blue", activebackground="blue", text= "Place " +str(j+1), command=turn_list[j])
         button_list.append(c)
     
     for j in range(c_num):
@@ -341,7 +345,7 @@ def reset():
     button_list = []
     
     for j in range(c_num):
-        c = tkinter.Button(window, height=2, width=7, fg="grey", activeforeground="blue", activebackground="blue", text= "Place", command=turn_list[j])
+        c = tkinter.Button(window, height=2, width=7, fg="grey", activeforeground="blue", activebackground="blue", text= "Place " + str(j+1), command=turn_list[j])
         button_list.append(c)
     
     for j in range(c_num):
@@ -364,8 +368,8 @@ def reset():
 
 
 #Rules/Grid size
-r_num = 6
-c_num = 7
+r_num = 8
+c_num = 9
 sweep = 4
 grid = np.zeros((r_num, c_num), int)
 
@@ -376,7 +380,7 @@ snake_draft = True"""
 
 # Let's create the Tkinter window
 window = tkinter.Tk()
-window.title("Grid")
+window.title("Game")
 window.geometry(str(76*c_num)+"x"+str(100*(r_num + 1) - 20))
 
 canvas_list = []
